@@ -27,26 +27,26 @@
 
         <TextView
             android:id="@+id/logintext1"
-            android:layout_width="300dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/login_page_quote"
             android:textColor="@color/yellow"
             android:textStyle="bold"
             android:textSize="25dp"
-            android:font="@font/lobster_regular"
-            android:layout_marginTop="40dp"
-
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="50dp"
             />
 
         <TextView
             android:layout_below="@id/logintext1"
-            android:layout_width="300dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/login_call_to_action"
             android:textColor="@color/yellow"
             android:textStyle="bold"
             android:textSize="25dp"
             android:layout_marginTop="80dp"
+            android:layout_marginRight="50dp"
             />
 
         <ImageButton
