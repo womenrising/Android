@@ -15,21 +15,49 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/WomenRisingLogo"
-        android:layout_gravity="center"
+        android:src="@drawable/womenrisinglogo"
+        android:layout_gravity="center_horizontal"
         />
 
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Welcome to Women Rising!"
-        />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@drawable/backgroundphoto">
 
-    <ImageButton
-        android:id="@+id/LILoginButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/LISignInButton"
-        />
+        <TextView
+            android:id="@+id/logintext1"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:text="@string/login_page_quote"
+            android:textColor="@color/yellow"
+            android:textStyle="bold"
+            android:textSize="25dp"
+            android:font="@font/lobster_regular"
+            android:layout_marginTop="40dp"
 
+            />
+
+        <TextView
+            android:layout_below="@id/logintext1"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:text="@string/login_call_to_action"
+            android:textColor="@color/yellow"
+            android:textStyle="bold"
+            android:textSize="25dp"
+            android:layout_marginTop="80dp"
+            />
+
+        <ImageButton
+            android:id="@+id/LILoginButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/signinbutton"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="20dp"
+            />
+
+    </RelativeLayout>
 </LinearLayout>

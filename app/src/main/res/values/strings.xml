@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">WomenRisingAndroid</string>
     <string name="welcome_to_women_rising_relativelayout"><![CDATA[Welcome to Women Rising! /> </RelativeLayout>]]></string>
+    <string name="login_page_quote">Studies show that mentors and friends determine your career path.</string>
+    <string name="login_call_to_action">Find that support group here.</string>
 </resources>
