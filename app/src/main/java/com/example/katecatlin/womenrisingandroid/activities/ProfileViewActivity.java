@@ -7,7 +7,6 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.katecatlin.womenrisingandroid.R;
-import com.example.katecatlin.womenrisingandroid.controllers.JSONCallLogic;
 
 import com.example.katecatlin.womenrisingandroid.interfaces.ProfileInterface;
 import com.example.katecatlin.womenrisingandroid.models.Profile;
@@ -19,13 +18,14 @@ import com.example.katecatlin.womenrisingandroid.models.Profile;
 
 public class ProfileViewActivity extends Activity implements ProfileInterface {
     Profile myProfile = new Profile();
+    Button participateButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profileview);
 
-        Button participateButton = (Button) findViewById(R.id.isParticipatingButton);
+        participateButton = (Button) findViewById(R.id.isParticipatingButton);
         participateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -37,12 +37,17 @@ public class ProfileViewActivity extends Activity implements ProfileInterface {
 
     @Override
     public void updateProfileTextViews(Profile returnedProfile) {
+        String month = "next month";
         myProfile = returnedProfile;
+
         TextView nameView = (TextView) findViewById(R.id.profileName);
-        nameView.setText(myProfile.getFirstName() + myProfile.getLastName());
+        nameView.setText(myProfile.getFirstName() + " " + myProfile.getLastName());
 
+        if (myProfile.getParticipating()) {
+            participateButton.setText(R.string.click_to_opt_out);
+        } else {
+            participateButton.setText(R.string.click_to_opt_in);
+        }
     }
-
-
 }
 

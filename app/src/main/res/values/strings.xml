@@ -3,4 +3,8 @@
     <string name="welcome_to_women_rising_relativelayout"><![CDATA[Welcome to Women Rising! /> </RelativeLayout>]]></string>
     <string name="login_page_quote">Studies show that mentors and friends determine your career path.</string>
     <string name="login_call_to_action">Find that support group here.</string>
+
+    <string name="click_to_opt_out">You're participating next month! Click to opt-out if you're too busy!</string>
+    <string name="click_to_opt_in">You are NOT signed up for matches next month. Click here to change that!</string>
+
 </resources>
