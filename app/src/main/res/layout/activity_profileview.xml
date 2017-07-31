@@ -17,7 +17,10 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:background="@color/yellow"
-            android:layout_margin="40dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginBottom="40dp"
             android:padding="10dp"
             android:text="YOU AREN'T SIGNED UP FOR [NEXT MONTH]! CLICK TO MATCH!"
             />
@@ -31,8 +34,8 @@
             />
 
         <ImageView android:id="@+id/profileImage"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
             android:layout_gravity="center_horizontal"
             android:background="@drawable/ghostperson"
             />
@@ -52,8 +55,65 @@
             android:text="Your peers for this month are:"
             />
 
-        
+    <LinearLayout android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        >
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/match_image_1"
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:src="@drawable/ghostperson"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                />
+
+            <TextView
+                android:id="@+id/matchName1"
+                android:layout_width="96dp"
+                android:layout_height="wrap_content"
+                android:text="MATCH NAME 1"
+                android:layout_gravity="center"
+                android:gravity="center"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/match_image_2"
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:src="@drawable/ghostperson"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                />
+
+            <TextView
+                android:id="@+id/matchName2"
+                android:layout_width="96dp"
+                android:layout_height="wrap_content"
+                android:text="MATCH NAME 2"
+                android:layout_gravity="center"
+                android:gravity="center"
+                />
+
+        </LinearLayout>
+    </LinearLayout>
     </LinearLayout>
 
 </RelativeLayout>
