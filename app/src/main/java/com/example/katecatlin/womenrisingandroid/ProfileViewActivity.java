@@ -5,4 +5,9 @@ package com.example.katecatlin.womenrisingandroid;
  */
 
 public class ProfileViewActivity {
+
+
+
+
 }
+

@@ -11,27 +11,48 @@
         android:orientation="vertical"
         android:layout_centerInParent="true">
 
-        <ImageView android:id="@+id/profileImage"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
+        <Button
+            android:id="@+id/isParticipatingButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:background="@drawable/ghostperson"/>
+            android:background="@color/yellow"
+            android:layout_margin="40dp"
+            android:padding="10dp"
+            android:text="YOU AREN'T SIGNED UP FOR [NEXT MONTH]! CLICK TO MATCH!"
+            />
 
         <TextView android:id="@+id/profileName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:textAppearance="?android:attr/textAppearanceLarge"/>
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="PROFILE NAME"
+            />
 
-        <TextView android:id="@+id/profileHeadline"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"/>
+        <ImageView android:id="@+id/profileImage"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/ghostperson"
+            />
 
         <TextView android:id="@+id/profileLocation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"/>
+            android:layout_gravity="center_horizontal"
+            android:text="CITY, STATE"
+            />
+
+        <TextView android:id="@+id/currentPeers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:text="Your peers for this month are:"
+            />
+
+        
 
     </LinearLayout>
 
