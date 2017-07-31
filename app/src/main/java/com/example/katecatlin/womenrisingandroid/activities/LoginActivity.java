@@ -1,13 +1,12 @@
-package com.example.katecatlin.womenrisingandroid;
+package com.example.katecatlin.womenrisingandroid.activities;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.provider.ContactsContract;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
+
+import com.example.katecatlin.womenrisingandroid.R;
 
 
 public class LoginActivity extends Activity {
