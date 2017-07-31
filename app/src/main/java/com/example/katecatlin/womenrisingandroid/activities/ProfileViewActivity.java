@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.katecatlin.womenrisingandroid.R;
-import com.example.katecatlin.womenrisingandroid.controllers.GetJSONInfo;
+import com.example.katecatlin.womenrisingandroid.controllers.JSONCallLogic;
 
 /**
  * Created by katecatlin on 7/23/17.
@@ -23,7 +23,7 @@ public class ProfileViewActivity extends Activity {
         participateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                GetJSONInfo jsonCaller = new GetJSONInfo();
+                JSONCallLogic jsonCaller = new JSONCallLogic();
                 jsonCaller.execute();
 
             }

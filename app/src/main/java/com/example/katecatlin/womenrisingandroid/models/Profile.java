@@ -7,23 +7,23 @@ import static android.R.attr.id;
  */
 
 public class Profile {
-    private String userID;
+    private int userID;
     private String firstName;
     private String lastName;
     private Boolean isParticipating;
-    private String[] matches;
+    public Profile[] matches;
+    //ToDo: Figure out how matched profiles are sent and change model accordingly.
 
     public Profile () {
     }
 
-    public Profile(String userID, String firstName, String lastName, Boolean isParticipating, String[] matches) {
+    public Profile(int userID, String firstName, String lastName, Boolean isParticipating, Profile[] matches) {
         this.userID = userID;
         this.firstName = firstName;
         this.isParticipating = isParticipating;
         this.lastName = lastName;
         this.matches = matches;
     }
-
 
     public String getFirstName() {
         return firstName;
@@ -49,19 +49,19 @@ public class Profile {
         this.lastName = lastName;
     }
 
-    public String[] getMatches() {
-        return matches;
-    }
-
-    public void setMatches(String[] matches) {
-        this.matches = matches;
-    }
-
-    public String getUserID() {
+    public int getUserID() {
         return userID;
     }
 
-    public void setUserID(String userID) {
+    public void setUserID(int userID) {
         this.userID = userID;
+    }
+
+    public Profile[] getMatches() {
+        return matches;
+    }
+
+    public void setMatches(Profile[] matches) {
+        this.matches = matches;
     }
 }

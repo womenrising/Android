@@ -3,6 +3,8 @@ package com.example.katecatlin.womenrisingandroid.controllers;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.example.katecatlin.womenrisingandroid.models.Profile;
+
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -15,12 +17,12 @@ import org.json.JSONException;
  * Created by katecatlin on 7/30/17.
  */
 
-public class GetJSONInfo extends AsyncTask<Void, Void, String[]> {
-    private final String LOG_TAG = "GetJSONInfo";
+public class JSONCallLogic extends AsyncTask<Object, Object, Profile> {
+    private final String LOG_TAG = "JSONCallLogic";
     String jsonString = "If this is your string, there was an error!";
 
     @Override
-    protected String[] doInBackground(Void... params) {
+    protected Profile doInBackground(Object... params) {
 
         final String URL_BASE = "https://www.womenrising.co";
         final String API_KEY = "";
@@ -43,7 +45,7 @@ public class GetJSONInfo extends AsyncTask<Void, Void, String[]> {
             StringBuilder stringBuilder = new StringBuilder();
 
             while ((bytesRead = bufferedInputStream.read()) != -1) {
-                stringBuilder.append((char)bytesRead);
+                stringBuilder.append((char) bytesRead);
             }
 
             jsonString = stringBuilder.toString();
@@ -66,14 +68,17 @@ public class GetJSONInfo extends AsyncTask<Void, Void, String[]> {
         }
 
         try {
-            String[] parsedJSONString = parseJSONString.parseJSONString(jsonString);
-            //Once you get the two strings you want form the JSON string, return them! Returning from this ASYNC task
-            //automatically sends you down to "onPostExecute".
-            return parsedJSONString;
+            Profile returnedProfile = new Profile();
+            returnedProfile = JSONParseLogic.parseJSONString(jsonString);
+            return returnedProfile;
         } catch (JSONException e) {
             return null;
         }
     }
 
+    protected void onPostExecute(Profile returnedProfile) {
+        if (returnedProfile != null) {
+            //ToDo: Send profile back through an interface to populate text fields in the activity.
+        }
     }
 }
