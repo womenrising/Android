@@ -4,15 +4,21 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.katecatlin.womenrisingandroid.R;
 import com.example.katecatlin.womenrisingandroid.controllers.JSONCallLogic;
+
+import com.example.katecatlin.womenrisingandroid.interfaces.ProfileInterface;
+import com.example.katecatlin.womenrisingandroid.models.Profile;
+
 
 /**
  * Created by katecatlin on 7/23/17.
  */
 
-public class ProfileViewActivity extends Activity {
+public class ProfileViewActivity extends Activity implements ProfileInterface {
+    Profile myProfile = new Profile();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,11 +29,17 @@ public class ProfileViewActivity extends Activity {
         participateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                JSONCallLogic jsonCaller = new JSONCallLogic();
-                jsonCaller.execute();
-
+            //TODO: Figure out how to send this through API
             }
+
         });
+    }
+
+    @Override
+    public void updateProfileTextViews(Profile returnedProfile) {
+        myProfile = returnedProfile;
+        TextView nameView = (TextView) findViewById(R.id.profileName);
+        nameView.setText(myProfile.getFirstName() + myProfile.getLastName());
 
     }
 

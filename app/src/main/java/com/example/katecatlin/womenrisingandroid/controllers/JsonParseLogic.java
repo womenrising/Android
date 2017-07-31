@@ -19,14 +19,14 @@ public class JSONParseLogic {
 
         //ToDo: figure out how matched profiles are sent and fix JSON parsing accordingly.
 
-        Profile newProfile = new Profile (
+        Profile returnedProfile = new Profile (
                 Integer.parseInt(wrJSONObject.getString("id")),
                 wrJSONObject.getString("first_name"),
                 wrJSONObject.getString("last_name"),
                 Boolean.parseBoolean(wrJSONObject.getString("is_participating_this_month")),
                 null);
 
-        return newProfile;
+        return returnedProfile;
     }
 
 }

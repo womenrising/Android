@@ -3,6 +3,7 @@ package com.example.katecatlin.womenrisingandroid.controllers;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.example.katecatlin.womenrisingandroid.interfaces.ProfileInterface;
 import com.example.katecatlin.womenrisingandroid.models.Profile;
 
 import java.io.BufferedInputStream;
@@ -18,8 +19,13 @@ import org.json.JSONException;
  */
 
 public class JSONCallLogic extends AsyncTask<Object, Object, Profile> {
+    ProfileInterface profileInterface;
     private final String LOG_TAG = "JSONCallLogic";
     String jsonString = "If this is your string, there was an error!";
+
+    public JSONCallLogic(ProfileInterface profileInterface) {
+        this.profileInterface = profileInterface;
+    }
 
     @Override
     protected Profile doInBackground(Object... params) {
@@ -78,6 +84,7 @@ public class JSONCallLogic extends AsyncTask<Object, Object, Profile> {
 
     protected void onPostExecute(Profile returnedProfile) {
         if (returnedProfile != null) {
+            profileInterface.updateProfileTextViews(returnedProfile);
             //ToDo: Send profile back through an interface to populate text fields in the activity.
         }
     }
