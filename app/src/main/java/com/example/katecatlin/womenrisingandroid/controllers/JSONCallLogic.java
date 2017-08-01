@@ -19,6 +19,16 @@ import org.json.JSONException;
  */
 
 public class JSONCallLogic extends AsyncTask<Object, Object, Profile> {
+    private static final String API_KEY = "75dmyef990nidj";
+    private static final String SECRET_KEY = "Zic7oE5eyclCUHX8";
+    //This is any string we want to use. This will be used for avoiding CSRF attacks.
+    private static final String STATE = "ywWcCpjJGMhUtD4XvJqEdBzR";
+    //This is the url that LinkedIn Auth process will redirect to. We can put whatever we want that starts with http:// or https:// .
+//We use a made up url that we will intercept when redirecting. Avoid Uppercases.
+    //TODO don't know if this is correct
+    private static final String REDIRECT_URI = "https://womenrising.herokuapp.com/users/auth/linkedin/callback";
+    private static final String JSON_GET_REQUEST_URL = "https://www.linkedin.com/uas/oauth2/authorization?response_type=code";
+
     ProfileInterface profileInterface;
     private final String LOG_TAG = "JSONCallLogic";
     String jsonString = "If this is your string, there was an error!";
@@ -87,5 +97,16 @@ public class JSONCallLogic extends AsyncTask<Object, Object, Profile> {
             profileInterface.updateProfileTextViews(returnedProfile);
             //ToDo: Send profile back through an interface to populate text fields in the activity.
         }
+    }
+
+    private String createURLForJSONGET () {
+        String uRLForJSONGet = new String(
+                JSON_GET_REQUEST_URL +
+                "&client_id=" + API_KEY +
+                        "&redirect_uri=" + REDIRECT_URI +
+                        "&state=" + STATE
+        );
+
+        return uRLForJSONGet;
     }
 }
