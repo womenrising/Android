@@ -1,59 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:layout_centerInParent="true"
     >
 
-    <LinearLayout android:layout_width="match_parent"
+    <Button
+        android:id="@+id/isParticipatingButton"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_centerInParent="true">
+        android:layout_gravity="center_horizontal"
+        android:background="@color/yellow"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginBottom="40dp"
+        android:padding="10dp"
+        android:text="YOU AREN'T SIGNED UP FOR [NEXT MONTH]! CLICK TO MATCH!"
+        />
 
-        <Button
-            android:id="@+id/isParticipatingButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:background="@color/yellow"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="40dp"
-            android:layout_marginLeft="40dp"
-            android:layout_marginBottom="40dp"
-            android:padding="10dp"
-            android:text="YOU AREN'T SIGNED UP FOR [NEXT MONTH]! CLICK TO MATCH!"
-            />
+    <TextView android:id="@+id/profileName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="PROFILE NAME"
+        />
 
-        <TextView android:id="@+id/profileName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="PROFILE NAME"
-            />
+    <ImageView android:id="@+id/profileImage"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/ghostperson"
+        />
 
-        <ImageView android:id="@+id/profileImage"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_gravity="center_horizontal"
-            android:background="@drawable/ghostperson"
-            />
+    <TextView android:id="@+id/profileLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="CITY, STATE"
+        />
 
-        <TextView android:id="@+id/profileLocation"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="CITY, STATE"
-            />
-
-        <TextView android:id="@+id/currentPeers"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="20dp"
-            android:text="Your peers for this month are:"
-            />
+    <TextView android:id="@+id/currentPeers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:text="Your peers for this month are:"
+        />
 
     <LinearLayout android:orientation="horizontal"
         android:layout_width="fill_parent"
@@ -114,6 +111,5 @@
 
         </LinearLayout>
     </LinearLayout>
-    </LinearLayout>
+</LinearLayout>
 
-</RelativeLayout>
