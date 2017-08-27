@@ -24,23 +24,21 @@ import org.json.JSONObject;
 public class LoginActivity extends Activity {
 
     public static final String FULL_URL_KEY = "FULL_URL_KEY";
+    //TODO: Refactor this and pull some logic out to a new class.
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        initializeControls();
-    }
 
-    private void initializeControls() {
         ImageButton loginButton = (ImageButton) findViewById(R.id.LILoginButton);
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 handleLogin();
             }
-        });
 
+        });
     }
 
     private void handleLogin() {
