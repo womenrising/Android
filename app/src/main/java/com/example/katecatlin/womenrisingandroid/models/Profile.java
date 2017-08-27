@@ -15,18 +15,20 @@ public class Profile implements Serializable {
     private Boolean isParticipating;
     public Profile[] matches;
     public String pictureURL;
+    private String emailAddress;
     //ToDo: Figure out how matched profiles are sent and change model accordingly.
 
     public Profile () {
     }
 
-    public Profile(String userID, String firstName, String lastName, Boolean isParticipating, Profile[] matches, String pictureURL) {
+    public Profile(String userID, String firstName, String lastName, Boolean isParticipating, Profile[] matches, String pictureURL, String emailAddress) {
         this.userID = userID;
         this.firstName = firstName;
         this.isParticipating = isParticipating;
         this.lastName = lastName;
         this.matches = matches;
         this.pictureURL = pictureURL;
+        this.emailAddress = emailAddress;
     }
 
     public String getFirstName() {
@@ -70,4 +72,6 @@ public class Profile implements Serializable {
     }
 
     public String getPictureURL() {return pictureURL;}
+
+    public String getEmailAddress() {return emailAddress;}
 }

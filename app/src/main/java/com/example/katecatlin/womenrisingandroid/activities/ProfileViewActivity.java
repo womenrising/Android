@@ -3,6 +3,7 @@ package com.example.katecatlin.womenrisingandroid.activities;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -23,6 +24,8 @@ public class ProfileViewActivity extends Activity {
     public static final String FULL_URL_KEY = "FULL_URL_KEY";
     Button participateButton;
     ImageView profileImage;
+    Profile myProfile;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,13 +45,13 @@ public class ProfileViewActivity extends Activity {
 
     public void updateProfileViewFromLinkedin () {
         Intent intent = getIntent();
-        Profile loggedInProfile = (Profile)intent.getSerializableExtra(FULL_URL_KEY);
+        myProfile = (Profile)intent.getSerializableExtra(FULL_URL_KEY);
 
-
-//        Picasso.with(getApplicationContext()).load(loggedInProfile.getPictureURL()).into(profileImage);
+        profileImage = (ImageView) findViewById(R.id.profileImage);
+        Picasso.with(getApplicationContext()).load(myProfile.getPictureURL()).into(profileImage);
 
         TextView nameView = (TextView) findViewById(R.id.profileName);
-        nameView.setText(loggedInProfile.getFirstName() + " " + loggedInProfile.getLastName());
+        nameView.setText(myProfile.getFirstName() + " " + myProfile.getLastName());
 
     }
 

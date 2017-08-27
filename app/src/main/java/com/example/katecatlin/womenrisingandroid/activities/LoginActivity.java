@@ -60,18 +60,8 @@ public class LoginActivity extends Activity {
         }, true);
     }
 
-    // Build the list of member permissions our LinkedIn session requires
-    private static Scope buildScope() {
-        return Scope.build(Scope.R_BASICPROFILE, Scope.W_SHARE, Scope.R_EMAILADDRESS);
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        LISessionManager.getInstance(getApplicationContext()).onActivityResult(this, requestCode, resultCode, data);
-    }
-
     private void fetchPersonalInfo () {
-        String url = "https://api.linkedin.com/v1/people/~:(id,first-name,last-name,picture-url)?format=json";
+        String url = "https://api.linkedin.com/v1/people/~:(id,first-name,last-name,picture-url,email-address)?format=json";
 
         final APIHelper apiHelper = APIHelper.getInstance(getApplicationContext());
         apiHelper.getRequest(this, url, new ApiListener() {
@@ -79,15 +69,14 @@ public class LoginActivity extends Activity {
             public void onApiSuccess(ApiResponse apiResponse) {
                 try {
                     JSONObject jsonObject = apiResponse.getResponseDataAsJson();
-                    Log.d("tag", jsonObject.toString(4));
 
                     String firstName = jsonObject.getString("firstName");
                     String lastName = jsonObject.getString("lastName");
                     String userID = jsonObject.getString("id");
                     String pictureURL = jsonObject.getString("pictureUrl");
-                    Log.d("tag", firstName + " " + lastName + " " + userID + " " + pictureURL);
+                    String emailAddress = jsonObject.getString("emailAddress");
 
-                    Profile myProfile = new Profile(userID, firstName, lastName, null, null, pictureURL);
+                    Profile myProfile = new Profile(userID, firstName, lastName, null, null, pictureURL, emailAddress);
 
                     launchProfileViewActivity(myProfile);
 
@@ -108,6 +97,15 @@ public class LoginActivity extends Activity {
         Intent intent = new Intent(this, ProfileViewActivity.class);
         intent.putExtra(FULL_URL_KEY, logedInProfile);
         startActivity(intent);
+    }
+
+    private static Scope buildScope() {
+        return Scope.build(Scope.R_BASICPROFILE, Scope.W_SHARE, Scope.R_EMAILADDRESS);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        LISessionManager.getInstance(getApplicationContext()).onActivityResult(this, requestCode, resultCode, data);
     }
 
 }
