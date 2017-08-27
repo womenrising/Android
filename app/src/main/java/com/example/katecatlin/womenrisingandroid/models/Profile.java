@@ -1,13 +1,15 @@
 package com.example.katecatlin.womenrisingandroid.models;
 
+import java.io.Serializable;
+
 import static android.R.attr.id;
 
 /**
  * Created by katecatlin on 7/30/17.
  */
 
-public class Profile {
-    private int userID;
+public class Profile implements Serializable {
+    private String userID;
     private String firstName;
     private String lastName;
     private Boolean isParticipating;
@@ -18,7 +20,7 @@ public class Profile {
     public Profile () {
     }
 
-    public Profile(int userID, String firstName, String lastName, Boolean isParticipating, Profile[] matches, String pictureURL) {
+    public Profile(String userID, String firstName, String lastName, Boolean isParticipating, Profile[] matches, String pictureURL) {
         this.userID = userID;
         this.firstName = firstName;
         this.isParticipating = isParticipating;
@@ -51,11 +53,11 @@ public class Profile {
         this.lastName = lastName;
     }
 
-    public int getUserID() {
+    public String getUserID() {
         return userID;
     }
 
-    public void setUserID(int userID) {
+    public void setUserID(String userID) {
         this.userID = userID;
     }
 

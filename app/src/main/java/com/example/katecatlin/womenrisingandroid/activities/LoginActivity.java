@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ImageButton;
 
 import com.example.katecatlin.womenrisingandroid.R;
+import com.example.katecatlin.womenrisingandroid.models.Profile;
 import com.linkedin.platform.APIHelper;
 import com.linkedin.platform.LISessionManager;
 import com.linkedin.platform.errors.LIApiError;
@@ -21,6 +22,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class LoginActivity extends Activity {
+
+    public static final String FULL_URL_KEY = "FULL_URL_KEY";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +71,7 @@ public class LoginActivity extends Activity {
     }
 
     private void fetchPersonalInfo () {
-        String url = "https://api.linkedin.com/v1/people/~:(id,first-name,last-name, public-profile-url, picture-url, email-address)";
+        String url = "https://api.linkedin.com/v1/people/~:(id,first-name,last-name,picture-url)?format=json";
 
         final APIHelper apiHelper = APIHelper.getInstance(getApplicationContext());
         apiHelper.getRequest(this, url, new ApiListener() {
@@ -76,8 +79,18 @@ public class LoginActivity extends Activity {
             public void onApiSuccess(ApiResponse apiResponse) {
                 try {
                     JSONObject jsonObject = apiResponse.getResponseDataAsJson();
-                    String firstName = jsonObject.getString("firstname");
-                    String pictureURL = jsonObject.getString("pictureURL");
+                    Log.d("tag", jsonObject.toString(4));
+
+                    String firstName = jsonObject.getString("firstName");
+                    String lastName = jsonObject.getString("lastName");
+                    String userID = jsonObject.getString("id");
+                    String pictureURL = jsonObject.getString("pictureUrl");
+                    Log.d("tag", firstName + " " + lastName + " " + userID + " " + pictureURL);
+
+                    Profile myProfile = new Profile(userID, firstName, lastName, null, null, pictureURL);
+
+                    launchProfileViewActivity(myProfile);
+
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -86,9 +99,16 @@ public class LoginActivity extends Activity {
 
             @Override
             public void onApiError(LIApiError liApiError) {
-                // Error making GET request!
+                Log.e("TAG", "Error onAPI Login");
             }
         });
     }
+
+    private void launchProfileViewActivity (Profile logedInProfile) {
+        Intent intent = new Intent(this, ProfileViewActivity.class);
+        intent.putExtra(FULL_URL_KEY, logedInProfile);
+        startActivity(intent);
+    }
+
 }
 
