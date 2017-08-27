@@ -12,21 +12,21 @@ import org.json.JSONObject;
 
 public class JSONParseLogic {
 
-    public static Profile parseJSONString(String jsonString) throws JSONException {
-        final Profile[] peers = null;
-
-        JSONObject wrJSONObject = new JSONObject(jsonString);
-
-        //ToDo: figure out how matched profiles are sent and fix JSON parsing accordingly.
-
-        Profile returnedProfile = new Profile (
-                Integer.parseInt(wrJSONObject.getString("id")),
-                wrJSONObject.getString("first_name"),
-                wrJSONObject.getString("last_name"),
-                Boolean.parseBoolean(wrJSONObject.getString("is_participating_this_month")),
-                null);
-
-        return returnedProfile;
-    }
+//    public static Profile parseJSONString(String jsonString) throws JSONException {
+//        final Profile[] peers = null;
+//
+//        JSONObject wrJSONObject = new JSONObject(jsonString);
+//
+//        //ToDo: figure out how matched profiles are sent and fix JSON parsing accordingly.
+//
+//        Profile returnedProfile = new Profile (
+//                Integer.parseInt(wrJSONObject.getString("id")),
+//                wrJSONObject.getString("first_name"),
+//                wrJSONObject.getString("last_name"),
+//                Boolean.parseBoolean(wrJSONObject.getString("is_participating_this_month")),
+//                null);
+//
+//        return returnedProfile;
+//    }
 
 }

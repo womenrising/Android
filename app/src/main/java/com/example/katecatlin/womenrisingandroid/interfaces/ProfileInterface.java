@@ -7,5 +7,5 @@ import com.example.katecatlin.womenrisingandroid.models.Profile;
  */
 
 public interface ProfileInterface {
-    public void updateProfileTextViews(Profile myProfile);
+    public void updateProfileViews(Profile myProfile);
 }

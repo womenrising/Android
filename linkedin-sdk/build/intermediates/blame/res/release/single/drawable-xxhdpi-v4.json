@@ -2,5 +2,9 @@
     {
         "merged": "/Users/katecatlin/Downloads/li-android-sdk/linkedin-sdk/build/intermediates/res/merged/release/drawable-xxhdpi-v4/ic_launcher.png",
         "source": "/Users/katecatlin/Downloads/li-android-sdk/linkedin-sdk/src/main/res/drawable-xxhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/Users/katecatlin/AndroidStudioProjects/WomenRisingAndroid/linkedin-sdk/build/intermediates/res/merged/release/drawable-xxhdpi-v4/ic_launcher.png",
+        "source": "/Users/katecatlin/AndroidStudioProjects/WomenRisingAndroid/linkedin-sdk/src/main/res/drawable-xxhdpi/ic_launcher.png"
     }
 ]

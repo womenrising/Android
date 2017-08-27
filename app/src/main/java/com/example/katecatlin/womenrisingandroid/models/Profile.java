@@ -12,17 +12,19 @@ public class Profile {
     private String lastName;
     private Boolean isParticipating;
     public Profile[] matches;
+    public String pictureURL;
     //ToDo: Figure out how matched profiles are sent and change model accordingly.
 
     public Profile () {
     }
 
-    public Profile(int userID, String firstName, String lastName, Boolean isParticipating, Profile[] matches) {
+    public Profile(int userID, String firstName, String lastName, Boolean isParticipating, Profile[] matches, String pictureURL) {
         this.userID = userID;
         this.firstName = firstName;
         this.isParticipating = isParticipating;
         this.lastName = lastName;
         this.matches = matches;
+        this.pictureURL = pictureURL;
     }
 
     public String getFirstName() {
@@ -64,4 +66,6 @@ public class Profile {
     public void setMatches(Profile[] matches) {
         this.matches = matches;
     }
+
+    public String getPictureURL() {return pictureURL;}
 }
