@@ -8,7 +8,9 @@ import android.view.View;
 import android.widget.ImageButton;
 
 import com.example.katecatlin.womenrisingandroid.R;
+import com.example.katecatlin.womenrisingandroid.interfaces.WomenRisingService;
 import com.example.katecatlin.womenrisingandroid.models.Profile;
+import com.example.katecatlin.womenrisingandroid.services.ServiceFactory;
 import com.linkedin.platform.APIHelper;
 import com.linkedin.platform.LISessionManager;
 import com.linkedin.platform.errors.LIApiError;
@@ -20,6 +22,9 @@ import com.linkedin.platform.utils.Scope;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class LoginActivity extends Activity {
 
@@ -42,7 +47,6 @@ public class LoginActivity extends Activity {
     }
 
     private void handleLogin() {
-        // Store a reference to the current activity
         final Activity thisActivity = this;
 
         LISessionManager.getInstance(getApplicationContext()).init(thisActivity, buildScope(), new AuthListener() {
@@ -56,6 +60,32 @@ public class LoginActivity extends Activity {
                 Log.e("TAG", error.toString());
             }
         }, true);
+
+        WomenRisingService service = ServiceFactory.createRetrofitService(WomenRisingService.class, WomenRisingService.SERVICE_ENDPOINT);
+        List<String> userIDList = Arrays.asList("");
+
+        for(String userID : userIDList);
+        service.getUser("userID")
+                    .subscribeOn(Schedulers.newThread())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(new Subscriber<Github>() {
+                        @Override
+                        public final void onCompleted() {
+                            // do nothing
+                        }
+
+                        @Override
+                        public final void onError(Throwable e) {
+                            Log.e("Women Rising API Call Error", e.getMessage());
+                        }
+
+                        @Override
+                        public final void onNext(Profile response) {
+                            mCardAdapter.addData(response);
+                        }
+                    });
+        }
+
     }
 
     private void fetchPersonalInfo () {
