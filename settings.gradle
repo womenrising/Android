@@ -1,1 +1,1 @@
-include ':app', ':li-android-sdk', ':sampleapp', ':linkedin-sdk', ':eventsapp'
+include ':app', ':li-android-sdk', ':linkedin-sdk'

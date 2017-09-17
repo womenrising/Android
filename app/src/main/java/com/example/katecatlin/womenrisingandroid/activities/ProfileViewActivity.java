@@ -3,7 +3,6 @@ package com.example.katecatlin.womenrisingandroid.activities;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -11,7 +10,6 @@ import android.widget.TextView;
 
 import com.example.katecatlin.womenrisingandroid.R;
 
-import com.example.katecatlin.womenrisingandroid.interfaces.ProfileInterface;
 import com.example.katecatlin.womenrisingandroid.models.Profile;
 import com.squareup.picasso.Picasso;
 
@@ -51,7 +49,7 @@ public class ProfileViewActivity extends Activity {
         Picasso.with(getApplicationContext()).load(myProfile.getPictureURL()).into(profileImage);
 
         TextView nameView = (TextView) findViewById(R.id.profileName);
-        nameView.setText(myProfile.getFirstName() + " " + myProfile.getLastName());
+        nameView.setText(myProfile.getFirst_name() + " " + myProfile.getLast_name());
 
     }
 

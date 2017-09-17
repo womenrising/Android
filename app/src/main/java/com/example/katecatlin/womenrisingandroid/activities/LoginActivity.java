@@ -10,7 +10,7 @@ import android.widget.ImageButton;
 import com.example.katecatlin.womenrisingandroid.R;
 import com.example.katecatlin.womenrisingandroid.interfaces.WomenRisingService;
 import com.example.katecatlin.womenrisingandroid.models.Profile;
-import com.example.katecatlin.womenrisingandroid.services.ServiceFactory;
+import com.example.katecatlin.womenrisingandroid.services.RetrofitHelper;
 import com.linkedin.platform.APIHelper;
 import com.linkedin.platform.LISessionManager;
 import com.linkedin.platform.errors.LIApiError;
@@ -23,12 +23,12 @@ import com.linkedin.platform.utils.Scope;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.Arrays;
-import java.util.List;
+import io.reactivex.disposables.CompositeDisposable;
 
 public class LoginActivity extends Activity {
 
     public static final String FULL_URL_KEY = "FULL_URL_KEY";
+    private CompositeDisposable mCompositeDisposable = new CompositeDisposable();
     //TODO: Refactor this and pull some logic out to a new class.
 
     @Override
@@ -52,7 +52,7 @@ public class LoginActivity extends Activity {
         LISessionManager.getInstance(getApplicationContext()).init(thisActivity, buildScope(), new AuthListener() {
             @Override
             public void onAuthSuccess() {
-                fetchPersonalInfo();
+                fetchPersonalInfoFromLinkedIn();
             }
 
             @Override
@@ -60,35 +60,9 @@ public class LoginActivity extends Activity {
                 Log.e("TAG", error.toString());
             }
         }, true);
-
-        WomenRisingService service = ServiceFactory.createRetrofitService(WomenRisingService.class, WomenRisingService.SERVICE_ENDPOINT);
-        List<String> userIDList = Arrays.asList("");
-
-        for(String userID : userIDList);
-        service.getUser("userID")
-                    .subscribeOn(Schedulers.newThread())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(new Subscriber<Github>() {
-                        @Override
-                        public final void onCompleted() {
-                            // do nothing
-                        }
-
-                        @Override
-                        public final void onError(Throwable e) {
-                            Log.e("Women Rising API Call Error", e.getMessage());
-                        }
-
-                        @Override
-                        public final void onNext(Profile response) {
-                            mCardAdapter.addData(response);
-                        }
-                    });
-        }
-
     }
 
-    private void fetchPersonalInfo () {
+    private void fetchPersonalInfoFromLinkedIn() {
         String url = "https://api.linkedin.com/v1/people/~:(id,first-name,last-name,picture-url,email-address)?format=json";
 
         final APIHelper apiHelper = APIHelper.getInstance(getApplicationContext());
@@ -106,12 +80,14 @@ public class LoginActivity extends Activity {
 
                     Profile myProfile = new Profile(userID, firstName, lastName, null, null, pictureURL, emailAddress);
 
-                    launchProfileViewActivity(myProfile);
+                    fetchInfoFromWRWebsite(myProfile);
 
 
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+
+
             }
 
             @Override
@@ -121,9 +97,35 @@ public class LoginActivity extends Activity {
         });
     }
 
-    private void launchProfileViewActivity (Profile logedInProfile) {
+    private void fetchInfoFromWRWebsite (Profile loggedInProfile) {
+//        WomenRisingService womenRisingService = new RetrofitHelper().getWomenRisingService();
+//
+//        mCompositeDisposable.add(mCityService.queryGeonames(44.1, -9.9, -22.4, 55.2, “de”)
+//                .subscribeOn(Schedulers.io()) // “work” on io thread
+//                .observeOn(AndroidSchedulers.mainThread()) // “listen” on UIThread
+//                .map(new Function<CityResponse, List<Geoname>>() {
+//                    @Override
+//                    public List<Geoname> apply(
+//                            @io.reactivex.annotations.NonNull final CityResponse  cityResponse) throws Exception {
+//                        // we want to have the geonames and not the wrapper object
+//                        return cityResponse.geonames;
+//                    }
+//                })
+//                .subscribe(new Consumer<List<Geoname>>() {
+//                    @Override
+//                    public void accept(
+//                            @io.reactivex.annotations.NonNull final List<Geoname> geonames)
+//                            throws Exception {
+//                        displayGeonames(geonames);
+//                    }
+//                })
+//        );
+    }
+
+
+    private void launchProfileViewActivity (Profile fullyLoadedProfile) {
         Intent intent = new Intent(this, ProfileViewActivity.class);
-        intent.putExtra(FULL_URL_KEY, logedInProfile);
+        intent.putExtra(FULL_URL_KEY, fullyLoadedProfile);
         startActivity(intent);
     }
 
